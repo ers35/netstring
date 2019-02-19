@@ -4,7 +4,7 @@
 Encode and decode [netstrings](https://cr.yp.to/proto/netstrings.txt).
 
 ## Install
-`luarocks install --server=http://luarocks.org/m/ers35 netstring`
+`luarocks install --server=https://luarocks.org/manifests/ers35 netstring`
 --]]
 
 local netstring = {}
