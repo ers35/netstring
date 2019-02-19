@@ -39,6 +39,10 @@ function netstring.decode(input)
 	if #data ~= length then
 		return nil
 	end
+	local comma = input:sub(-1)
+	if comma ~= "," then
+		return nil
+	end
 	return data
 end
 
