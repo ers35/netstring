@@ -7,15 +7,25 @@ local tests = {
 	{",", "1:,,"},
 	{":", "1::,"},
 	{"\0", "1:\0,"},
+	{0, "1:0,"},
+	{123, "3:123,"},
+	{1.5, "3:1.5,"},
+	{false, "5:false,"},
 }
-for _, test in ipairs(tests) do
-	assert(netstring.encode(test[1]) == test[2])
-	assert(netstring.decode(test[2]) == test[1])
+for i, test in ipairs(tests) do
+	assert(netstring.encode(test[1]) == tostring(test[2]), "test " .. i)
+	assert(netstring.decode(test[2]) == tostring(test[1]), "test " .. i)
 end
 
+local decoded, remainder = netstring.decode("5:hello,5:world,")
+assert(decoded == "hello")
+assert(remainder == "5:world,")
+local encoded = netstring.encode(0.0)
+assert(encoded == "1:0," or encoded == "3:0.0,")
 -- Invalid input.
 assert(netstring.decode("") == nil)
 assert(netstring.decode("1") == nil)
+assert(netstring.decode("1:") == nil)
 assert(netstring.decode(":") == nil)
 assert(netstring.decode(",") == nil)
 assert(netstring.decode("3hello") == nil)
