@@ -20,8 +20,12 @@ end
 local decoded, remainder = netstring.decode("5:hello,5:world,")
 assert(decoded == "hello")
 assert(remainder == "5:world,")
+local iter = netstring.gdecode("5:hello,5:world,")
+assert(iter() == "hello")
+assert(iter() == "world")
 local encoded = netstring.encode(0.0)
 assert(encoded == "1:0," or encoded == "3:0.0,")
+
 -- Invalid input.
 assert(netstring.decode("") == nil)
 assert(netstring.decode("1") == nil)
@@ -31,3 +35,5 @@ assert(netstring.decode(",") == nil)
 assert(netstring.decode("3hello") == nil)
 assert(netstring.decode("3:hello") == nil)
 assert(netstring.decode("5:hello-") == nil)
+local iter = netstring.gdecode("")
+assert(iter() == nil)

@@ -14,6 +14,10 @@ local netstring = {}
 --]]
 
 --[[=
+### netstring.encode(decoded)
+
+Encode a netstring.
+
 ```lua
 local encoded = netstring.encode("hello")
 ```
@@ -55,6 +59,27 @@ function netstring.decode(input)
 	
 	local remainder = input:sub(index)
 	return output, remainder
+end
+
+--[[=
+### netstring.gdecode(encoded)
+
+Returns an iterator function that, each time it is called, returns the next decoded 
+string from `encoded`.
+
+```lua
+local encoded = "5:hello,5:world,"
+for decoded in netstring.gdecode(encoded) do
+	print(decoded)
+end
+```
+--]]
+function netstring.gdecode(input)
+	local decoded
+	return function()
+		decoded, input = netstring.decode(input)
+		return decoded
+	end
 end
 
 return netstring
