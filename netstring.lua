@@ -1,6 +1,6 @@
 -- The author disclaims copyright to this source code.
 
---[[=
+--[[[
 # netstring
 
 Encode and decode [netstrings](https://cr.yp.to/proto/netstrings.txt).
@@ -11,11 +11,11 @@ Encode and decode [netstrings](https://cr.yp.to/proto/netstrings.txt).
 
 local netstring = {}
 
---[[=
+--[[[
 ## Usage
 --]]
 
---[[=
+--[[[
 ### netstring.encode(decoded)
 
 Encode a netstring.
@@ -30,7 +30,7 @@ function netstring.encode(input)
 	return output
 end
 
---[[=
+--[[[
 ### netstring.decode(encoded)
 
 Decode a netstring.
@@ -63,7 +63,7 @@ function netstring.decode(input)
 	return output, remainder
 end
 
---[[=
+--[[[
 ### netstring.gdecode(encoded)
 
 Returns an iterator function that, each time it is called, returns the next decoded 

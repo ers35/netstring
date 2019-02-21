@@ -8,4 +8,4 @@ test:
 	luajit test.lua
 	
 readme.md: netstring.lua Makefile
-	lua -e 'for match in io.read("*all"):gmatch("--%[%[%=%s?(.-)--%]%]") do print(match) end' < "$<" > "$@"
+	lua -e 'for match in io.read("*all"):gmatch("--%[%[%[%s?(.-)--%]%]") do print(match) end' < "$<" > "$@"
