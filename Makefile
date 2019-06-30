@@ -7,5 +7,5 @@ test:
 	lua5.3 test.lua
 	luajit test.lua
 	
-readme.md: netstring.lua Makefile
-	lua -e 'for match in io.read("*all"):gmatch("--%[%[%[%s?(.-)--%]%]") do print(match) end' < "$<" > "$@"
+readme.md: netstring.lua
+	doc $< $@
